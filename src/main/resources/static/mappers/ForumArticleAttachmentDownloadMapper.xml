@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="club.chillrainqcna.chillrainbbs.mappers.ForumArticleAttachmentDownloadMapper">
+<resultMap id="base_result_map" type="club.chillrainqcna.chillrainbbs.entity.bean.ForumArticleAttachmentDownload">
+    <result column="file_id" property="fileId"></result>
+    <result column="user_id" property="userId"></result>
+    <result column="article_id" property="articleId"></result>
+    <result column="download_count" property="downloadCount"></result>
+</resultMap>
+    <insert id="insertOrUpdate" parameterType="club.chillrainqcna.chillrainbbs.entity.bean.ForumArticleAttachmentDownload">
+        INSERT INTO forum_article_attachment_download
+        VALUES (#{fileId}, #{userId}, #{articleId}, #{downloadCount})
+        ON DUPLICATE KEY UPDATE
+        download_count = download_count + 1
+
+    </insert>
+
+</mapper>

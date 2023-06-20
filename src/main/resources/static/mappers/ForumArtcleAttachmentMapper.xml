@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="club.chillrainqcna.chillrainbbs.mappers.ForumArticleAttachmentMapper">
+
+    <update id="updateDownloadCount">
+        UPDATE forum_article_attachment SET download_count = download_count + 1 WHERE file_id = #{fileId}
+    </update>
+</mapper>

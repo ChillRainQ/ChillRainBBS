@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="club.chillrainqcna.chillrainbbs.mappers.ForumArticleMapper">
+
+    <update id="updateArticleCountMessage">
+        UPDATE forum_article
+        <set>
+            <if test="type==0">
+                read_count = read_count + #{count}
+            </if>
+            <if test="type==1">
+                good_count = good_count + #{count}
+            </if>
+            <if test="type==2">
+                comment_count = comment_count + #{count}
+            </if>
+        </set>
+        WHERE article_id = #{articleId}
+    </update>
+    <update id="updateBoardNameBatch">
+        UPDATE forum_article
+        <set>
+            <if test="boardType==0">
+                p_board_name = #{boardName}
+            </if>
+            <if test="boardType==1">
+                board_name = #{boardName}
+            </if>
+        </set>
+        <where>
+            <if test="boardType==0">
+                p_board_id = #{boardId}
+            </if>
+            <if test="boardType==1">
+                board_id = #{boardId}
+            </if>
+        </where>
+    </update>
+
+</mapper>

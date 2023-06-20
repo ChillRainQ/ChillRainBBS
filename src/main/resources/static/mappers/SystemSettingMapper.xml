@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="club.chillrainqcna.chillrainbbs.mappers.SystemSettingMapper">
+
+    <insert id="updateOrInsert" parameterType="club.chillrainqcna.chillrainbbs.entity.bean.SysSetting">
+        INSERT INTO sys_setting
+        VALUES (#{code}, #{jsonContent})
+        ON DUPLICATE KEY UPDATE
+        <trim>
+            <if test="code != null">
+                code = #{code}
+            </if>
+            <if test="jsonContent != null">
+                json_content = #{jsonContent}
+            </if>
+        </trim>
+    </insert>
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="club.chillrainqcna.chillrainbbs.mappers.UserMessageMapper">
+    <update id="updateMessageStatusBatch">
+        UPDATE user_message
+        SET status = #{status}
+        <where>
+            <if test="receivedUserId != null and receivedUserId != ''">
+                received_user_id = #{receivedUserId}
+            </if>
+
+            <if test="messageType != null">
+                AND    message_type = #{messageType}
+            </if>
+        </where>
+    </update>
+
+    <select id="selectUserMessageCount" resultType="java.util.Map">
+        SELECT message_type messageType, count(1) `count`
+        FROM user_message
+        WHERE received_user_id = #{userId}
+        AND status = 1
+        GROUP BY message_type
+    </select>
+</mapper>

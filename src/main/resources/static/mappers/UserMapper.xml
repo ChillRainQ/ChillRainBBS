@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="club.chillrainqcna.chillrainbbs.mappers.UserMapper">
+    <update id="updateIntegral">
+        UPDATE user_info SET current_integral = current_integral + #{integral} WHERE user_id = #{userId} AND current_integral + #{integral} > 0 OR current_integral + #{integral} = 0
+    </update>
+</mapper>
